@@ -6,7 +6,7 @@ function setMaxDigits(n) {
     bigZero = new BigInt;
     bigOne = new BigInt;
     bigOne.digits[0] = 1
-}
+} 
 function BigInt(n) {
     this.digits = typeof n == "boolean" && n == !0 ? null : ZERO_ARRAY.slice(0);
     this.isNeg = !1
