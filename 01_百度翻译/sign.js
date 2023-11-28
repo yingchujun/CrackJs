@@ -1,6 +1,6 @@
 var r = null;
 window = globalThis
-
+ 
 function e(t, e) {
     (null == e || e > t.length) && (e = t.length);
     for (var n = 0, r = new Array(e); n < e; n++)
