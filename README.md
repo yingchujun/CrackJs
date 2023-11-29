@@ -7,5 +7,5 @@
 |  ⭐   | 百度翻译 |    请求加密sign值     | [冲！](./01_百度翻译) |      [链接](https://fanyi.baidu.com)       |
 |  ⭐⭐  | 有道翻译 | webpack扣取加密sign值 | [冲！](./02_有道翻译) | [链接](http://fanyi.youdao.com/index.html) |
 |  ⭐   |  房天下  |       密码加密        |  [冲！](./03_房天下)  |     [链接](https://passport.fang.com/)     |
-|  ⭐⭐  | G妹游戏  |      webpack入门      | [冲！](./04_G妹游戏)  |     [链接](https://passport.gm99.com/)     |
+|  ⭐  | G妹游戏  |      webpack入门      | [冲！](./04_G妹游戏)  |     [链接](https://passport.gm99.com/)     |
 
