@@ -6226,7 +6226,7 @@ window.enc = null;
     },
 })
 
-createHash = new window.enc('98e6')
+createHash = window.enc('98e6')
 const u = "fanyideskweb"
     , d = "webfanyi"
     , m = "client,mysticTime,product"
