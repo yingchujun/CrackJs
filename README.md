@@ -12,4 +12,6 @@
 |  ⭐   | G妹游戏  |                webpack入门                |  [冲！](./04_G妹游戏)   |              [链接](https://passport.gm99.com/)              |
 |  ⭐⭐  | 中华人才 | 滑块验证码,职位详情页请求多次需要滑块验证 | [冲！](./05_中华人才网) | [链接](http://www.zhrc.com/CompanyDetail.aspx?id=2622#1090265) |
 |  ⭐⭐  |   微博   |               账号密码加密                |    [冲！](./06_微博)    | [链接](https://www.weibo.com/login.php/#_loginLayer_1701750554284) |
+| ⭐⭐⭐  | 南昌人才 |            登录需要过极验滑块             | [冲！](./07_南昌人才网) | [链接](https://www.ncrczpw.com/index.php?m=&c=members&a=login) |
+
 
