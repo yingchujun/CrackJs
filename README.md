@@ -16,6 +16,8 @@
 | ⭐⭐⭐  | 南昌人才网 |            登录需要过极验滑块             | [冲！](./07_南昌人才网) | [链接](https://www.ncrczpw.com/index.php?m=&c=members&a=login) |
 |  ⭐   |   当乐网   |                 密码加密                  |    [冲!](08_当乐网)     |         [链接](https://oauth.d.cn/auth/goLogin.html)         |
 |  ⭐   |  酷我音乐  |  reqId参数,参数意义不大,纯当webpack练习   |   [冲!](09_酷我音乐)    |                   [链接](https://kuwo.cn/)                   |
+| ⭐⭐ | 酷我音乐 | sign和password加密 | [冲!](./10_升学e网通) | [链接](https://www.ewt360.com/site-www/home/page) |
+
 
 
 
