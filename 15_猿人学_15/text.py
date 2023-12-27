@@ -39,8 +39,8 @@ def get_m():
     return str(result) + '|' + str(t1) + "|" + str(t2)
 
 if __name__ == '__main__':
-    username = '1324827156'
-    password = '180611sxy'
+    username = ''
+    password = ''
     cookies = get_login_cookie(username, password)
     count = 0
     for i in range(1, 6):
