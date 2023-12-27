@@ -18,7 +18,7 @@
 |  ⭐   |  酷我音乐  |  reqId参数,参数意义不大,纯当webpack练习   |   [冲!](09_酷我音乐)    |                   [链接](https://kuwo.cn/)                   |
 | ⭐⭐ | 升学e网通 | sign和password加密 | [冲!](./10_升学e网通) | [链接](https://www.ewt360.com/site-www/home/page) |
 |  ⭐  | 全国建筑市场 | 返回值加密 | [冲!](./10_全国建筑市场) | [链接](https://jzsc.mohurd.gov.cn/data/company) |
-| ⭐ | 猿人学(第一期) | / | [冲!](./12_猿人学系列(第一期)) | [链接](https://match.yuanrenxue.cn) |
+| / | 猿人学(第一期) | / | [冲!](./12_猿人学系列(第一期)) | [链接](https://match.yuanrenxue.cn) |
 
 
 
