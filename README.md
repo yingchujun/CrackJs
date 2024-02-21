@@ -23,6 +23,7 @@
 | ⭐⭐ | GOV | 加速乐 | [冲!](./14_gov) | [链接](https://www.mps.gov.cn/n2254098/n4904352/index_3497341_74.html) |
 | ⭐⭐ | B站 | password | [冲!](./15_Bilibili) | [链接](https://space.bilibili.com) |
 | ⭐⭐⭐ | 去哪儿旅行 | 登录滑块 | [冲!](./16_去哪儿旅行) | [链接](https://user.qunar.com/passport/login.jsp) |
+| ⭐⭐⭐⭐ | 豆瓣 | 值完成了滑块缺口位置获取 | [冲!](./17_豆瓣) | [链接]([https://user.qunar.com/passport/login.jsp](https://www.douban.com/)https://www.douban.com/) |
 
 
 
