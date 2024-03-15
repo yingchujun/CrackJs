@@ -27,6 +27,7 @@
 | ⭐ | 唯品会 | 补环境 | [冲!](./18_唯品会) | [链接](https://category.vip.com/)|
 | ⭐ | 超星学习通 | 登录 | [冲!](./19_超星学习通) | [链接](https://passport2.chaoxing.com/)|
 | ⭐⭐⭐ | 山西省电子税务局 | 滑块验证码 | [冲!](./20_山西省电子税务局) | [链接](https://etax.shanxi.chinatax.gov.cn/gzfw/xydjalnsrcx)|
+| ⭐ | 山西省电子税务局 | 数字字母验证码，登录流程 | [冲!](./21_优购网) | [链接](https://www.yougou.com/)|
 
 
 
