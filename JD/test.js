@@ -19609,5 +19609,12 @@ function params(ranKey = '', requestId = '', situation = '') {
     return data
 }
 
+function point_json(x, y, encryptKey) {
+    return Y(JSON.stringify({
+        x: x / 350,
+        y
+    }), encryptKey)
+}
 
+// console.log(point_json(187, 0.60294116, "JG2WtugKFUw9r4qh"))
 // console.log(params("SErebMaTBfC6mfIl", "24031516300197204wF8xG_6c59", "login"))
