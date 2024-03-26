@@ -2,10 +2,8 @@ from io import BytesIO
 from PIL import Image
 import requests
 import execjs
-import base64
-import json
 import cv2
-import re
+import time
 
 with open('./test.js', 'r', encoding='utf-8') as f:
     js_code = f.read()
@@ -52,17 +50,10 @@ def identify_gap(bg,tp,out):
     # 返回缺口的X坐标
     return tl[0] 
 
-# 将滑块从精灵图中裁剪下来
-def crop_sprite_to_slide(sprite):
-    image = Image.open(BytesIO(sprite))
-    image = image.resize((282, 256))
-    cropped = image.crop((58, 203, 58+49, 203+49))
-    cropped.save("slide.png")
-
 # 调整底图大小并保存
-def resize_and_save_image(path ,content):
+def resize_and_save_image(path ,content, size):
     image = Image.open(BytesIO(content))
-    image = image.resize((278, 161))
+    image = image.resize(size)
     image.save(path)
 
 
@@ -80,20 +71,46 @@ def save_captcha_img(url):
     response = requests.get(url, headers=headers)
     return response.content
 
+def checkSlidingVerifyCode(t, permanent_id, requestId,verifyToken, point_json):
+
+
+    data = {
+        't': t,
+        'ct': 'pc',
+        'permanent_id': permanent_id,
+        'requestId': requestId,
+        'situation': 'login',
+        'verifyToken': verifyToken,
+        'slide_cost_time': '883',
+        'need_new_verifydata': '0',
+        'point_json': point_json,
+    }
+
+    response = requests.post('https://login.dangdang.com/api/customer/loginapi/checkSlidingVerifyCode', headers=headers, data=data)
+    print(response.json())
+
 if __name__ == '__main__':
     # t 、 ct 、 requestId 、 sign 、 permanent_id
     # 第一次请求data
     data = ctx.call('params')
+    permanent_id = data['permanent_id']
+    requestId = data['requestId']
     ranKey = ranKey(data) # requestId 
     # 第二次请求data
     data2 = ctx.call('params', ranKey['rankey'], ranKey['requestId'], 'login')
     result = getSlidingVerifyCode(data2)
-    print(result)
     slideImg = save_captcha_img(result['data']['slideImg'])
     bgImg = save_captcha_img(result['data']['bgImg'])
-    encryptKey = save_captcha_img(result['data']['encryptKey'])
-    verifyToken = save_captcha_img(result['data']['token'])
+    encryptKey = result['data']['encryptKey']
+    verifyToken = result['data']['token']
+    y = result['data']['y']
 
-    resize_and_save_image('./slideImg.png', slideImg)
-    resize_and_save_image('./bgImg,jpg', bgImg)
+    resize_and_save_image('./slideImg.png', slideImg, (61,61))
+    resize_and_save_image('./bgImg.jpg', bgImg, (350,175))
+
+    x = identify_gap('./bgImg.jpg', './slideImg.png', './out.png')
+    point_json = ctx.call("point_json", x, y, encryptKey)
+    t = int(time.time()*1000)
+    checkSlidingVerifyCode(t, permanent_id, requestId,verifyToken, point_json)
+
     
