@@ -19581,22 +19581,34 @@ var Y = function(t, e) {
         iv: U
         }).toString()
 }
+var L = function(t) {
+    var e = z.enc.Base64.parse(t)
+      , n = e.toString(z.enc.Utf8);
+    return n
+};
 
-// const permanent_id = G()
-// const t = (new Date).getTime()
+// console.log(params("kQ9cGDajqNBtjTHg", "2403271002428430ib0kc2_0760", '', "20240326145708273483378506650905157", '', "0c0cb3b5bcc846c392ab9ad9b243da58", "XZ7YlMLgH3", '123456', "123234123123"), )
 
-function params(ranKey = '', requestId = '', situation = '') {
+function params(ranKey = '', requestId = '', situation = '', permanent_id = '', point_json = '', verifyToken = '', check_code = '', password = '', username = '') {
     var sign;
     var data = {};
-    const permanent_id = G()
     const t = (new Date).getTime()
-    if (situation != '') {
-        data['situation'] = situation
-        sign = decodeURIComponent(`ct=pc&permanent_id=${permanent_id}&requestId=${requestId}&situation=login&t=${t}`)
-    } else {
-        sign = decodeURIComponent(`ct=pc&permanent_id=${permanent_id}&t=${t}`)
-
+    if (permanent_id != '' && username == '' ) {
+        sign = decodeURIComponent(`ct=pc&need_new_verifydata=0&permanent_id=${permanent_id}&point_json=${point_json}&requestId=${requestId}&situation=login&slide_cost_time=77&t=${t}&verifyToken=${verifyToken}`)
+    } else if  (permanent_id != '' && username != '' ) {
+        sign = decodeURIComponent(`autokey=off&check_code=${check_code}&check_code_type=1&ct=pc&password=${password}&permanent_id=${permanent_id}&requestId=${requestId}&t=${t}&token=${verifyToken}&username=${username}`)
     }
+
+    if (permanent_id == ''){
+        permanent_id = G()
+        if (situation != '') {
+            data['situation'] = situation
+            sign = decodeURIComponent(`ct=pc&permanent_id=${permanent_id}&requestId=${requestId}&situation=login&t=${t}`)
+        } else {
+            sign = decodeURIComponent(`ct=pc&permanent_id=${permanent_id}&t=${t}`)
+        }
+    }
+
     sign = decodeURIComponent(sign)
     sign = J(sign)
     data['t'] = t
@@ -19604,7 +19616,6 @@ function params(ranKey = '', requestId = '', situation = '') {
     data['requestId'] = requestId
     data['sign'] = Y(sign, ranKey)
     data['permanent_id'] = permanent_id
-
 
     return data
 }
@@ -19616,5 +19627,7 @@ function point_json(x, y, encryptKey) {
     }), encryptKey)
 }
 
-// console.log(point_json(187, 0.60294116, "JG2WtugKFUw9r4qh"))
-// console.log(params("SErebMaTBfC6mfIl", "24031516300197204wF8xG_6c59", "login"))
+
+function password(pwd) {
+    return  Y(pwd, L("cXJjb2RlX3BAc3N3MHJkSw=="))
+}
