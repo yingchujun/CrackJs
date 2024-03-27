@@ -65,28 +65,49 @@ def ranKey(data):
 def getSlidingVerifyCode(data):
     url = "https://login.dangdang.com/api/customer/loginapi/getSlidingVerifyCode"
     response = requests.post(url, headers=headers, data=data)
+    print(response.json())
     return response.json()
 
 def save_captcha_img(url):
     response = requests.get(url, headers=headers)
     return response.content
 
-def checkSlidingVerifyCode(t, permanent_id, requestId,verifyToken, point_json):
+def checkSlidingVerifyCode(data3):
 
 
     data = {
-        't': t,
+        't': data3['t'],
         'ct': 'pc',
-        'permanent_id': permanent_id,
-        'requestId': requestId,
+        'permanent_id': data3['permanent_id'],
+        'requestId': data3['requestId'],
         'situation': 'login',
-        'verifyToken': verifyToken,
-        'slide_cost_time': '883',
+        'verifyToken': data3['verifyToken'],
+        'slide_cost_time': '77',
         'need_new_verifydata': '0',
-        'point_json': point_json,
+        'point_json': data3['point_json'],
+        'sign': data3['sign'],
     }
 
     response = requests.post('https://login.dangdang.com/api/customer/loginapi/checkSlidingVerifyCode', headers=headers, data=data)
+    print(response.json())
+    return response.json()
+
+def accountLogin(data4):
+    data = {
+        't': data4['t'],
+        'ct': 'pc',
+        'permanent_id': data4['permanent_id'],
+        'requestId': data4['requestId'],
+        'username': '123234123123',
+        'password': data4['password'],
+        'autokey': 'off',
+        'token': data4['verifyToken'],
+        'check_code': data4['check_code'],
+        'check_code_type': '1',
+        'sign': data4['sign'],
+    }
+
+    response = requests.post('https://login.dangdang.com/api/customer/loginapi/accountLogin',headers=headers,data=data)
     print(response.json())
 
 if __name__ == '__main__':
@@ -96,6 +117,7 @@ if __name__ == '__main__':
     permanent_id = data['permanent_id']
     requestId = data['requestId']
     ranKey = ranKey(data) # requestId 
+    print(data, ranKey)
     # 第二次请求data
     data2 = ctx.call('params', ranKey['rankey'], ranKey['requestId'], 'login')
     result = getSlidingVerifyCode(data2)
@@ -110,7 +132,16 @@ if __name__ == '__main__':
 
     x = identify_gap('./bgImg.jpg', './slideImg.png', './out.png')
     point_json = ctx.call("point_json", x, y, encryptKey)
-    t = int(time.time()*1000)
-    checkSlidingVerifyCode(t, permanent_id, requestId,verifyToken, point_json)
+    data3 = ctx.call('params', ranKey['rankey'], ranKey['requestId'], 'login', permanent_id, point_json, verifyToken)
+    data3['verifyToken'] = verifyToken
+    data3['point_json'] = point_json
+    check_code = checkSlidingVerifyCode(data3)['data']['checkCode']
 
-    
+    password = ctx.call('password', 123456)
+    username = '123456'
+    data4 = ctx.call('params', ranKey['rankey'], ranKey['requestId'], '', permanent_id, '', verifyToken, check_code, password, username)
+    data4['username'] = username
+    data4['check_code'] = check_code
+    data4['verifyToken'] = verifyToken
+    data4['password'] = password
+    accountLogin(data4)
