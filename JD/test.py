@@ -11,7 +11,9 @@ ctx = execjs.compile(js_code)
 
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0",
+    'Origin': 'https://login.dangdang.com',
+    'Referer': 'https://login.dangdang.com/?returnurl=https%3A%2F%2Fwww.dangdang.com%2F',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
 }
 
 
@@ -98,7 +100,7 @@ def accountLogin(data4):
         'ct': 'pc',
         'permanent_id': data4['permanent_id'],
         'requestId': data4['requestId'],
-        'username': '123234123123',
+        'username': data4['username'],
         'password': data4['password'],
         'autokey': 'off',
         'token': data4['verifyToken'],
@@ -111,6 +113,10 @@ def accountLogin(data4):
     print(response.json())
 
 if __name__ == '__main__':
+    username = ''
+    password = ''
+    password = ctx.call('password', password)
+
     # t 、 ct 、 requestId 、 sign 、 permanent_id
     # 第一次请求data
     data = ctx.call('params')
@@ -137,8 +143,7 @@ if __name__ == '__main__':
     data3['point_json'] = point_json
     check_code = checkSlidingVerifyCode(data3)['data']['checkCode']
 
-    password = ctx.call('password', 123456)
-    username = '123456'
+
     data4 = ctx.call('params', ranKey['rankey'], ranKey['requestId'], '', permanent_id, '', verifyToken, check_code, password, username)
     data4['username'] = username
     data4['check_code'] = check_code
